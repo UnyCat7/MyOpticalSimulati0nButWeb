@@ -1,121 +1,89 @@
 <!doctype html>
-<html lang="en-us">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Optical Simulation</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
-      background-color: #111;
-      color: #eee;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      background-color: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
     }
 
-    #header {
-      width: 100%;
+    #controls {
+      position: fixed;
+      top: 10px;
+      right: 10px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #1a1a1a;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      gap: 10px;
+      z-index: 10;
     }
 
-    #header img {
-      height: 50px;
-    }
-
-    #status-container {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    #status {
-      font-weight: bold;
-      color: #aad400;
-    }
-
-    .spinner {
-      height: 24px;
-      width: 24px;
-      border: 3px solid rgba(255,255,255,0.2);
-      border-top: 3px solid #aad400;
-      border-radius: 50%;
-      animation: rotation 0.8s linear infinite;
-    }
-
-    @keyframes rotation {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    #controls input, #controls button {
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-
-    #canvas-container {
-      margin-top: 20px;
-      border: 1px solid #333;
-      background-color: black;
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
     }
 
     canvas {
       display: block;
+      background-color: black;
       max-width: 100%;
+      max-height: 100%;
     }
   </style>
 </head>
 <body>
 
-  <div id="header">
-    <a href="http://emscripten.org">
-      <img src="data:image/png;base64,iVBORw0K... (truncated for brevity) ..." alt="Emscripten Logo">
-    </a>
-
-    <div id="status-container">
-      <div class="spinner" id="spinner"></div>
-      <div id="status">Downloading...</div>
-    </div>
-
-    <div id="controls">
-      <label><input type="checkbox" id="resize"> Resize canvas</label>
-      <label><input type="checkbox" id="pointerLock" checked> Lock mouse</label>
-      <button onclick="Module.requestFullscreen(document.getElementById('pointerLock').checked, 
-                                                document.getElementById('resize').checked)">
-        Fullscreen
-      </button>
-    </div>
+  <div id="controls">
+    <button id="fullscreenBtn">Fullscreen</button>
+    <button id="toggleThemeBtn">Light Mode</button>
   </div>
 
-  <div id="canvas-container">
-    <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
-  </div>
+  <canvas id="canvas" tabindex="-1"></canvas>
 
   <script>
-    const statusElement = document.getElementById('status');
-    const progressElement = document.getElementById('progress');
-    const spinnerElement = document.getElementById('spinner');
-    const canvasElement = document.getElementById('canvas');
+    const canvas = document.getElementById('canvas');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const toggleThemeBtn = document.getElementById('toggleThemeBtn');
 
-    canvasElement.addEventListener('webglcontextlost', (e) => {
-      alert('WebGL context lost. Reload the page.');
-      e.preventDefault();
-    }, false);
+    let darkMode = true;
 
-    var Module = {
-      canvas: canvasElement,
-      setStatus(text) {
-        statusElement.innerText = text;
+    fullscreenBtn.addEventListener('click', () => {
+      if (canvas.requestFullscreen) {
+        canvas.requestFullscreen();
+      } else if (canvas.webkitRequestFullscreen) {
+        canvas.webkitRequestFullscreen();
       }
+    });
+
+    toggleThemeBtn.addEventListener('click', () => {
+      darkMode = !darkMode;
+      document.body.style.backgroundColor = darkMode ? '#111' : '#fff';
+      document.body.style.color = darkMode ? '#eee' : '#111';
+      canvas.style.backgroundColor = darkMode ? 'black' : 'white';
+      toggleThemeBtn.textContent = darkMode ? 'Light Mode' : 'Dark Mode';
+    });
+
+    // Minimal WebGL/Module setup for Emscripten
+    var Module = {
+      canvas: canvas,
+      setStatus(text) { console.log(text); }
     };
 
-    Module.setStatus('Downloading...');
+    canvas.addEventListener('webglcontextlost', (e) => {
+      alert('WebGL context lost. Reload page.');
+      e.preventDefault();
+    });
   </script>
 
   <script async src="Optical_Simulation.js"></script>
