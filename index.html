@@ -34,11 +34,28 @@
       font-size: 14px;
     }
 
+    #progress {
+      width: 80%;
+      height: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      background-color: #444;
+      overflow: hidden;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background-color: #6cf;
+      transition: width 0.2s;
+    }
+
     canvas {
       display: block;
       background-color: black;
       max-width: 100%;
       max-height: 100%;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -46,7 +63,10 @@
 
   <div id="controls">
     <button id="fullscreenBtn">Fullscreen</button>
-    <button id="toggleThemeBtn">Light Mode</button>
+  </div>
+
+  <div id="progress">
+    <div id="progressBar"></div>
   </div>
 
   <canvas id="canvas" tabindex="-1"></canvas>
@@ -54,36 +74,32 @@
   <script>
     const canvas = document.getElementById('canvas');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const toggleThemeBtn = document.getElementById('toggleThemeBtn');
-
-    let darkMode = true;
+    const progressBar = document.getElementById('progressBar');
 
     fullscreenBtn.addEventListener('click', () => {
-      if (canvas.requestFullscreen) {
-        canvas.requestFullscreen();
-      } else if (canvas.webkitRequestFullscreen) {
-        canvas.webkitRequestFullscreen();
-      }
+      if (canvas.requestFullscreen) canvas.requestFullscreen();
+      else if (canvas.webkitRequestFullscreen) canvas.webkitRequestFullscreen();
     });
-
-    toggleThemeBtn.addEventListener('click', () => {
-      darkMode = !darkMode;
-      document.body.style.backgroundColor = darkMode ? '#111' : '#fff';
-      document.body.style.color = darkMode ? '#eee' : '#111';
-      canvas.style.backgroundColor = darkMode ? 'black' : 'white';
-      toggleThemeBtn.textContent = darkMode ? 'Light Mode' : 'Dark Mode';
-    });
-
-    // Minimal WebGL/Module setup for Emscripten
-    var Module = {
-      canvas: canvas,
-      setStatus(text) { console.log(text); }
-    };
 
     canvas.addEventListener('webglcontextlost', (e) => {
       alert('WebGL context lost. Reload page.');
       e.preventDefault();
     });
+
+    var Module = {
+      canvas: canvas,
+      setStatus(text) {
+        const m = text.match(/([^(]+)\((\d+)\/(\d+)\)/);
+        if (m) {
+          const progress = (parseInt(m[2]) / parseInt(m[3])) * 100;
+          progressBar.style.width = progress + '%';
+        }
+        console.log(text);
+      },
+      monitorRunDependencies(left) {
+        if (left === 0) progressBar.style.width = '100%';
+      }
+    };
   </script>
 
   <script async src="Optical_Simulation.js"></script>
