@@ -27,7 +27,7 @@ var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIR
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\papag\AppData\Local\Temp\tmp3ibz1qxm.js
+// include: C:\Users\papag\AppData\Local\Temp\tmpn8rjlh6v.js
 
   Module['expectedDataFileDownloads'] ??= 0;
   Module['expectedDataFileDownloads']++;
@@ -138,9 +138,12 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
         if (!check) throw msg + new Error().stack;
       }
 Module['FS_createPath']("/", "resources", true, true);
+Module['FS_createPath']("/resources", "fonts", true, true);
 Module['FS_createPath']("/resources", "models", true, true);
+Module['FS_createPath']("/resources/models", "Gizmo", true, true);
 Module['FS_createPath']("/resources/models", "lightSim", true, true);
 Module['FS_createPath']("/resources", "shaders", true, true);
+Module['FS_createPath']("/resources/shaders", "gizmo", true, true);
 Module['FS_createPath']("/resources/shaders", "grid", true, true);
 Module['FS_createPath']("/resources/shaders", "optical", true, true);
 Module['FS_createPath']("/resources/shaders/optical", "LightRay", true, true);
@@ -211,25 +214,25 @@ Module['FS_createPath']("/resources", "textures", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/resources/models/Suzanne.obj", "start": 0, "end": 86108}, {"filename": "/resources/models/bird.obj", "start": 86108, "end": 93707}, {"filename": "/resources/models/cube.obj", "start": 93707, "end": 94855}, {"filename": "/resources/models/lamp.obj", "start": 94855, "end": 97277}, {"filename": "/resources/models/lightSim/areaLight.obj", "start": 97277, "end": 109970}, {"filename": "/resources/models/lightSim/laserLight.obj", "start": 109970, "end": 121670}, {"filename": "/resources/models/lightSim/pointLight.obj", "start": 121670, "end": 130825}, {"filename": "/resources/models/lightSim/sunLight.obj", "start": 130825, "end": 143249}, {"filename": "/resources/models/triangleobj.obj", "start": 143249, "end": 143517}, {"filename": "/resources/shaders/fragment.glsl", "start": 143517, "end": 144563}, {"filename": "/resources/shaders/fs_lightVisual.glsl", "start": 144563, "end": 145010}, {"filename": "/resources/shaders/grid/gridFragment.glsl", "start": 145010, "end": 147788}, {"filename": "/resources/shaders/grid/gridVertex.glsl", "start": 147788, "end": 148130}, {"filename": "/resources/shaders/optical/LSourceFragment.glsl", "start": 148130, "end": 148260}, {"filename": "/resources/shaders/optical/LSourceVertex.glsl", "start": 148260, "end": 148473}, {"filename": "/resources/shaders/optical/LSourceVertexInstance.glsl", "start": 148473, "end": 148732}, {"filename": "/resources/shaders/optical/LightRay/flatFrag.glsl", "start": 148732, "end": 149240}, {"filename": "/resources/shaders/optical/LightRay/flatVert.glsl", "start": 149240, "end": 149887}, {"filename": "/resources/shaders/optical/LightRay/smoothFrag.glsl", "start": 149887, "end": 150390}, {"filename": "/resources/shaders/optical/LightRay/smoothVert.glsl", "start": 150390, "end": 151032}, {"filename": "/resources/shaders/optical/LightRay/solidFrag.glsl", "start": 151032, "end": 151173}, {"filename": "/resources/shaders/optical/LightRay/solidVert.glsl", "start": 151173, "end": 151582}, {"filename": "/resources/shaders/optical/mediumFragment.glsl", "start": 151582, "end": 152472}, {"filename": "/resources/shaders/optical/mediumVertex.glsl", "start": 152472, "end": 152983}, {"filename": "/resources/shaders/optical/selectedFragment.glsl", "start": 152983, "end": 153161}, {"filename": "/resources/shaders/optical/selectedVertex.glsl", "start": 153161, "end": 153951}, {"filename": "/resources/shaders/vertex.glsl", "start": 153951, "end": 154488}, {"filename": "/resources/shaders/vs_lightVisual.glsl", "start": 154488, "end": 154898}, {"filename": "/resources/textures/birdTexture.png", "start": 154898, "end": 204497}, {"filename": "/resources/textures/box.png", "start": 204497, "end": 405949}, {"filename": "/resources/textures/dice.png", "start": 405949, "end": 407520}, {"filename": "/resources/textures/sky.png", "start": 407520, "end": 595462}, {"filename": "/resources/textures/smile_face.png", "start": 595462, "end": 639466}], "remote_package_size": 639466});
+    loadPackage({"files": [{"filename": "/resources/fonts/icons.sfd", "start": 0, "end": 27070}, {"filename": "/resources/fonts/icons.ttf", "start": 27070, "end": 31098}, {"filename": "/resources/models/Gizmo/2axis_squere.obj", "start": 31098, "end": 31425}, {"filename": "/resources/models/Gizmo/gizmo.blend", "start": 31425, "end": 996041}, {"filename": "/resources/models/Gizmo/gizmo.blend1", "start": 996041, "end": 1950897}, {"filename": "/resources/models/Gizmo/position_arrow.obj", "start": 1950897, "end": 1966747}, {"filename": "/resources/models/Gizmo/rotation_circle.obj", "start": 1966747, "end": 2047826}, {"filename": "/resources/models/Gizmo/rotator_collider.obj", "start": 2047826, "end": 2052087}, {"filename": "/resources/models/Gizmo/scale_arrow.mtl", "start": 2052087, "end": 2052145}, {"filename": "/resources/models/Gizmo/scale_arrow.obj", "start": 2052145, "end": 2062218}, {"filename": "/resources/models/Suzanne.obj", "start": 2062218, "end": 2148326}, {"filename": "/resources/models/bird.obj", "start": 2148326, "end": 2155925}, {"filename": "/resources/models/cube.obj", "start": 2155925, "end": 2157073}, {"filename": "/resources/models/lamp.obj", "start": 2157073, "end": 2159495}, {"filename": "/resources/models/lightSim/areaLight.obj", "start": 2159495, "end": 2172188}, {"filename": "/resources/models/lightSim/laserLight.obj", "start": 2172188, "end": 2183888}, {"filename": "/resources/models/lightSim/pointLight.obj", "start": 2183888, "end": 2193043}, {"filename": "/resources/models/lightSim/sunLight.obj", "start": 2193043, "end": 2205467}, {"filename": "/resources/models/triangleobj.obj", "start": 2205467, "end": 2205735}, {"filename": "/resources/shaders/fragment.glsl", "start": 2205735, "end": 2206781}, {"filename": "/resources/shaders/fs_lightVisual.glsl", "start": 2206781, "end": 2207228}, {"filename": "/resources/shaders/gizmo/gizmoFrag.glsl", "start": 2207228, "end": 2207690}, {"filename": "/resources/shaders/gizmo/gizmoVert.glsl", "start": 2207690, "end": 2208124}, {"filename": "/resources/shaders/grid/gridFragment.glsl", "start": 2208124, "end": 2210902}, {"filename": "/resources/shaders/grid/gridVertex.glsl", "start": 2210902, "end": 2211244}, {"filename": "/resources/shaders/optical/LSourceFragment.glsl", "start": 2211244, "end": 2211374}, {"filename": "/resources/shaders/optical/LSourceVertex.glsl", "start": 2211374, "end": 2211587}, {"filename": "/resources/shaders/optical/LSourceVertexInstance.glsl", "start": 2211587, "end": 2211846}, {"filename": "/resources/shaders/optical/LightRay/flatFrag.glsl", "start": 2211846, "end": 2212354}, {"filename": "/resources/shaders/optical/LightRay/flatVert.glsl", "start": 2212354, "end": 2213001}, {"filename": "/resources/shaders/optical/LightRay/smoothFrag.glsl", "start": 2213001, "end": 2213504}, {"filename": "/resources/shaders/optical/LightRay/smoothVert.glsl", "start": 2213504, "end": 2214146}, {"filename": "/resources/shaders/optical/LightRay/solidFrag.glsl", "start": 2214146, "end": 2214287}, {"filename": "/resources/shaders/optical/LightRay/solidVert.glsl", "start": 2214287, "end": 2214696}, {"filename": "/resources/shaders/optical/mediumFragment.glsl", "start": 2214696, "end": 2215586}, {"filename": "/resources/shaders/optical/mediumVertex.glsl", "start": 2215586, "end": 2216097}, {"filename": "/resources/shaders/optical/selectedFragment.glsl", "start": 2216097, "end": 2216275}, {"filename": "/resources/shaders/optical/selectedVertex.glsl", "start": 2216275, "end": 2217065}, {"filename": "/resources/shaders/vertex.glsl", "start": 2217065, "end": 2217602}, {"filename": "/resources/shaders/vs_lightVisual.glsl", "start": 2217602, "end": 2218012}, {"filename": "/resources/textures/birdTexture.png", "start": 2218012, "end": 2267611}, {"filename": "/resources/textures/box.png", "start": 2267611, "end": 2469063}, {"filename": "/resources/textures/dice.png", "start": 2469063, "end": 2470634}, {"filename": "/resources/textures/sky.png", "start": 2470634, "end": 2658576}, {"filename": "/resources/textures/smile_face.png", "start": 2658576, "end": 2702580}], "remote_package_size": 2702580});
 
   })();
 
-// end include: C:\Users\papag\AppData\Local\Temp\tmp3ibz1qxm.js
-// include: C:\Users\papag\AppData\Local\Temp\tmp3u54yjgu.js
+// end include: C:\Users\papag\AppData\Local\Temp\tmpn8rjlh6v.js
+// include: C:\Users\papag\AppData\Local\Temp\tmpe7tc5lai.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if ((typeof ENVIRONMENT_IS_WASM_WORKER != 'undefined' && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != 'undefined' && ENVIRONMENT_IS_AUDIO_WORKLET)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\papag\AppData\Local\Temp\tmp3u54yjgu.js
-// include: C:\Users\papag\AppData\Local\Temp\tmpiwj0rp05.js
+  // end include: C:\Users\papag\AppData\Local\Temp\tmpe7tc5lai.js
+// include: C:\Users\papag\AppData\Local\Temp\tmpd1rhux_j.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\papag\AppData\Local\Temp\tmpiwj0rp05.js
+  // end include: C:\Users\papag\AppData\Local\Temp\tmpd1rhux_j.js
 
 
 var arguments_ = [];
@@ -5484,6 +5487,8 @@ async function createWasm() {
       return id;
     };
 
+  var _glCullFace = (x0) => GLctx.cullFace(x0);
+
   var _glDeleteBuffers = (n, buffers) => {
       for (var i = 0; i < n; i++) {
         var id = HEAP32[(((buffers)+(i*4))>>2)];
@@ -8795,6 +8800,8 @@ var wasmImports = {
   glCreateProgram: _glCreateProgram,
   /** @export */
   glCreateShader: _glCreateShader,
+  /** @export */
+  glCullFace: _glCullFace,
   /** @export */
   glDeleteBuffers: _glDeleteBuffers,
   /** @export */
